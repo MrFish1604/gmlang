@@ -1,0 +1,41 @@
+{
+    "scopeName": "source.gm",
+    "patterns": [{ "include": "#expression" }],
+    "repository": {
+      "expression": {
+        "patterns": [{ "include": "#keywords" }, { "include": "#paren-expression" }, {"include": "#bracket"}, {"include":"#symbol"}, {"include":"#comment"}]
+      },
+      "keywords": {
+        "match": "reply|exec",
+        "name": "keyword.other"
+      },
+
+      "symbol":{
+        "match": "\\*|\\*\\*|\\$|<|>",
+        "name": "constant.language"
+      },
+
+      "comment":{
+        "begin": "#",
+        "end": "\n",
+        "name": "comment.line.number-sign"
+      },
+      
+      "paren-expression": {
+        "begin": "\\(",
+        "end": "\\)",
+        "beginCaptures": {
+          "0": { "name": "punctuation.paren.open" }
+        },
+        "endCaptures": {
+          "0": { "name": "punctuation.paren.close" }
+        },
+        "name": "markup.raw",
+        "patterns": [{"include":"#symbol"}],
+        "symbol":{
+          "match": "\\*|\\*\\*|\\$|<|>",
+          "name": "constant.language"
+        }
+      }
+    }
+  }
